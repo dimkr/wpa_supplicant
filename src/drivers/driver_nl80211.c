@@ -39,6 +39,13 @@
 #include "driver_nl80211.h"
 
 
+#ifdef CONFIG_LIBNL_TINY
+#define nl_handle nl_sock
+#define nl_handle_alloc_cb nl_socket_alloc_cb
+#define nl_handle_destroy nl_socket_free
+#endif
+
+
 #ifndef CONFIG_LIBNL20
 /*
  * libnl 1.1 has a bug, it tries to allocate socket numbers densely
